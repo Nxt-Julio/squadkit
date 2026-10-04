@@ -1,0 +1,69 @@
+name: Consultoria de marketing - do diagnostico ao plano de acao
+description: >-
+  Pesquisa e estrategia primeiro; criacao, qualificacao e midia depois, sempre sobre a
+  mesma estrategia aprovada. Dois checkpoints humanos.
+steps:
+  - id: intake
+    title: Briefing e escopo
+    agent: marketing-manager
+    goal: >-
+      Ler briefing.md, listar lacunas, perguntar so o essencial ao humano e fechar objetivo,
+      meta numerica e escopo da consultoria.
+    output: 01-escopo.md
+    checkpoint: true
+
+  - id: market-intel
+    title: Inteligencia de mercado
+    agent: market-analyst
+    goal: >-
+      Mapear mercado, publico (dores, desejos, objecoes), concorrentes (oferta, preco, mensagem,
+      canais) e oportunidades de posicionamento.
+    depends_on: [intake]
+    output: 02-inteligencia-de-mercado.md
+
+  - id: strategy
+    title: Estrategia e posicionamento
+    agent: marketing-manager
+    goal: >-
+      Sintetizar a pesquisa em posicionamento, proposta de valor, oferta, funil e metricas-alvo.
+      Esta estrategia e a fonte unica para copy, SDR e midia.
+    depends_on: [market-intel]
+    output: 03-estrategia.md
+    checkpoint: true
+
+  - id: copy
+    title: Copy e conversao
+    agent: copywriter
+    goal: >-
+      Criar mensagem central, headlines, anuncios, pagina de captura/venda e e-mails/WhatsApp
+      de nutricao alinhados a estrategia, com variantes para teste A/B.
+    depends_on: [strategy]
+    output: 04-copy.md
+
+  - id: qualification
+    title: Qualificacao e atendimento
+    agent: sdr-qualifier
+    goal: >-
+      Definir criterios de lead qualificado (ICP + scoring), roteiro de triagem, respostas a
+      objecoes, follow-up e regras de passagem para o comercial.
+    depends_on: [strategy]
+    output: 05-qualificacao-sdr.md
+
+  - id: media-plan
+    title: Plano de midia paga
+    agent: media-optimizer
+    goal: >-
+      Montar estrutura de campanhas, publicos, orcamento por canal, tracking, metas de CPL/CAC/ROAS
+      e rotina de otimizacao, usando as pecas de 04-copy.md.
+    depends_on: [strategy, copy]
+    output: 06-plano-de-midia.md
+
+  - id: consolidate
+    title: Plano de acao consolidado
+    agent: marketing-manager
+    goal: >-
+      Conferir consistencia entre estrategia, copy, SDR e midia; resolver conflitos; entregar
+      plano de 30-60-90 dias com responsaveis, metricas e riscos.
+    depends_on: [copy, qualification, media-plan]
+    output: 07-plano-de-acao.md
+    checkpoint: true

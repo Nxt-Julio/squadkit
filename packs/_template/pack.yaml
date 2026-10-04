@@ -1,0 +1,17 @@
+id: _template
+name: Meu Squad
+version: 0.1.0
+description: >-
+  Descreva em 1-2 frases o que este time de agentes entrega para {{client_name}}.
+orchestrator: manager
+workflow: workflow.yaml
+
+# Variaveis tornam o pack reutilizavel: use {{chave}} em agentes, workflow e briefing.
+# O usuario sobrescreve com `squadkit build --set chave=valor`.
+variables:
+  client_name:
+    description: Nome do cliente, empresa ou projeto atendido
+    required: true
+  output_language:
+    description: Idioma das entregas
+    default: pt-BR

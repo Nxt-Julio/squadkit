@@ -1,0 +1,32 @@
+id: marketing-consulting
+name: Squad de Consultoria de Marketing
+version: 0.1.0
+description: >-
+  Time de 5 agentes para consultoria de marketing de {{client_name}} ({{business_type}}):
+  inteligencia de mercado, copy e conversao, qualificacao de leads (SDR), midia paga e um
+  gerente que orquestra tudo, do briefing ao plano de acao aprovado.
+orchestrator: marketing-manager
+workflow: workflow.yaml
+
+variables:
+  client_name:
+    description: Nome do cliente ou da marca
+    required: true
+  business_type:
+    description: Segmento / tipo de negocio (ex. clinica odontologica, SaaS B2B, e-commerce de moda)
+    default: negocio local
+  offer:
+    description: Principal produto ou servico a ser vendido
+    default: a definir no briefing
+  monthly_budget:
+    description: Verba mensal de midia paga
+    default: a definir no briefing
+  channels:
+    description: Canais de midia considerados
+    default: Meta Ads, Google Ads
+  brand_voice:
+    description: Tom de voz da marca
+    default: claro, humano e direto
+  output_language:
+    description: Idioma das entregas
+    default: pt-BR

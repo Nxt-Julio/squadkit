@@ -1,0 +1,24 @@
+name: Fluxo principal
+description: Do briefing a entrega aprovada.
+steps:
+  - id: intake
+    title: Entender o pedido
+    agent: manager
+    goal: Ler briefing.md, listar o que falta e confirmar escopo e criterios de sucesso com o humano.
+    output: 01-intake.md
+    checkpoint: true
+
+  - id: execute
+    title: Executar a especialidade
+    agent: specialist
+    goal: Produzir a entrega principal seguindo o escopo aprovado em 01-intake.md.
+    depends_on: [intake]
+    output: 02-entrega.md
+
+  - id: review
+    title: Consolidar e entregar
+    agent: manager
+    goal: Revisar a entrega contra os criterios de sucesso, corrigir lacunas e escrever o resumo final.
+    depends_on: [execute]
+    output: 03-resumo-final.md
+    checkpoint: true
